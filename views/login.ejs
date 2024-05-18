@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white p-20">
+  
+  <a href="/" class="text-blue-500">Create Account</a>
+  <h1 class="text-3xl">Login Account</h1>
+  <form action="/login" method="post" class="mt-8">
+      <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" type="email" name="email" placeholder="Enter Email">
+      <% if (error && error.email) { %>
+         <h1 class="text-red-500 mt-2"> &nbsp; <%= error.email.msg   %> </h1> 
+      <% } %>
+        
+      <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" type="password" name="password" placeholder="Enter Password">
+      <% if (error && error.password) { %>
+        <h1 class="text-red-500 mt-2"> &nbsp; <%= error.password.msg   %> </h1> 
+     <% } %>
+      <input  class="mt-4 bg-blue-600 px-5 py-2 rounded-md" type="submit" value="Login">
+  </form>
+
+</body>
+</html>

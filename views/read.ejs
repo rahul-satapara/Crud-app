@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-zinc-900 text-white p-10" >
+  
+  <h1 class="text-3xl my-10">All Users</h1>
+  <a href="/create" class="bg-green-500 outline-none border-none hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Create User <i class="fa-solid fa-plus"></i></a> &nbsp;
+  <a href="/logout" class="bg-red-500 outline-none border-none hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Logout</a>
+
+
+    <div class="Users mt-4 flex gap-4 flex-wrap justify-center align-start" style="width: 100%; margin:auto">
+      <% if(posts.length>0){%>
+        <% posts.forEach( function(post){%>       
+          <div class="user cursor-pointer w-72 p-4 mt-11 bg-zinc-800 rounded-lg ">
+            <h1 class="text-blue-500 mb-4">@<%= post.user.name %></h1>
+              <div class="w-full h-72 rounded-lg bg-zinc-700">
+                <img class="w-full h-full object-top" src="<%= post.image %>" style="object-fit: cover;" alt="User Image">
+              </div>
+              <h3 class="text-xl tracking-tighter mt-3  "><%= post.name%></h3>
+              <h5 class="text-zinc-500 "><%= post.email%></h5>
+              <div class="flex gap-3 mt-6">       
+                  <a href="/update/<%= post._id %>" class="text-zinc-200">Edit User</a>
+                  <a href="/delete/<%= post._id %>" class="text-red-500">Delete User</a>
+              </div>
+  
+          </div>   
+        <% })%>
+         <% } else{ %>
+          <h1 class="text-3xl">No User</h1>
+        <% }%>
+          
+
+    </div>
+
+
+</body>
+</html>
