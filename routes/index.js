@@ -87,26 +87,33 @@ router.get('/logout',(req,res)=>{
   res.redirect('/');  
 });
 
+router.get('/profile',isLoggedIn,async(req,res)=>{
+  let user = await userModel.findOne({email:req.user.email}).populate('posts');
+  res.render('profile' ,{user});
+});
+
 router.get('/create',isLoggedIn, function (req, res, next) {
   res.render('index');
 });
 
 router.post('/create',isLoggedIn, async function (req, res) {
   let { name, email, image } = req.body;
+  let user = await userModel.findOne({email: req.user.email});
   let post = await postModel.create({
     name,
     email,
     image,
     user: req.user._id
   });
+  await user.posts.push(post._id);
+  await user.save();
   res.redirect('/read');
-
 });
 
 // read
 router.get('/read', isLoggedIn , async function (req, res) {
-  let allPosts = await postModel.find().populate('user');
-  res.render('read', { posts: allPosts});
+  let allPosts = await postModel.find().populate('user');  
+  res.render('read', { posts: allPosts,user:req.user});
 });
 
 //update
@@ -124,7 +131,10 @@ router.post('/update/:id', isLoggedIn,async function (req, res) {
 
 // delete
 router.get('/delete/:id', isLoggedIn,async function (req, res) {
-  let deletedUser = await postModel.findOneAndDelete({ _id: req.params.id });
+  let deletedPost= await postModel.findOneAndDelete({ _id: req.params.id });
+  let user = await userModel.findOne({email:req.user.email});
+  await user.posts.splice(1,user.posts.indexOf(deletedPost._id));
+  await user.save();
   res.redirect('/read');
 });
 

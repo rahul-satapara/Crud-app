@@ -6,10 +6,27 @@
   <title>Update</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-900 text-white p-20">
+<body>
+  <div class="nav bg-slate-800 w-full h-16 px-20 py-4 ">
+    <ul class="flex gap-4 items-center text-white">
+      <li class="list-none"></li>
+      <a href="/">home</a>
+      <a href="/read">Read</a>
+      <a href="/profile">profile</a>
+      <a href="/login">login</a>
+      <div class="flex gap-2 items-center justify-end w-full">
+        <a href="/create"
+          class="bg-green-500 outline-none border-none hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">CreateUser
+          <i class="fa-solid fa-plus"></i></a> &nbsp;
+        <a href="/logout"
+          class="bg-red-500 outline-none border-none hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Logout</a>
+      </div>
+    </ul>
+  </div>
+<div class="bg-zinc-900 h-screen text-white p-20">
   
-  <a href="/read" class="text-blue-500">Read Users</a>
-  <a href="/create" class="text-blue-500">Home</a>
+  <a href="/read" class="text-blue-500">Back</a> <br>
+  <a href="/create" class="text-green-500">Create User</a>
 
   <h1 class="text-3xl">Update User</h1>
 
@@ -26,13 +43,10 @@
         <input class="block px-5 w-full rounded-md outline-none py-2 bg-zinc-800" type="text" value="<%= post.name %>" name="name" placeholder="Enter Name">
         <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" value="<%= post.email %>" type="email" name="email" placeholder="Enter your email">
         <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" value="<%= post.image%>" type="text" name="image" placeholder="Enter Image Url">
-  
         <input  class="mt-4 bg-yellow-500 text-black px-5 py-2 rounded-md" type="submit" value="Update User">
     </form>
   </div>
 
-
-
-
+</div>
 </body>
 </html>

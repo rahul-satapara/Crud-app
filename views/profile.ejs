@@ -29,18 +29,21 @@
       </div>
     </ul>
   </div>
-  <div class="main bg-zinc-900 min-h-[93vh] w-full flex flex-col justify-center text-white p-5">
+  <div class="main bg-zinc-900 min-h-[92vh] w-full flex flex-col justify-center  text-white p-10">
 
     <div class="flex h-12 items-center gap-3">
       <img class="h-12 w-12 rounded-full" src="/images/upload/default.jpg" alt="User pfp">
-      <a href="/profile" class="text-2xl"><%= user.name %></a>
+      <a href="/profile" class="text-2xl">
+        <%= user.name %>
+      </a>
     </div>
-    <h1 class="text-3xl my-3 self-center">All Posts</h1>
-    <div class="Users mt-2 flex gap-4 flex-wrap justify-center align-start">
-      <% if(posts.length>0){%>
-        <% posts.forEach( function(post){%>
+
+    <% if(user.posts.length>0){%>
+      <h1 class="text-3xl my-3 self-center">Your Posts</h1>
+      <div class="Users mt-2 flex gap-4 flex-wrap justify-center align-start">
+        <% user.posts.forEach( function(post){%>
           <div class="user cursor-pointer w-72 p-4 mt-4 bg-zinc-800 rounded-lg ">
-            <h1 class="text-blue-500 mb-4">@<%= post.user.name %>
+            <h1 class="text-blue-500 mb-4">@<%= user.name %>
             </h1>
             <div class="w-full h-72 rounded-lg bg-zinc-700">
               <img class="w-full h-full object-top" src="<%= post.image %>" style="object-fit: cover;" alt="User Image">
@@ -51,21 +54,17 @@
             <h5 class="text-zinc-500 ">
               <%= post.email%>
             </h5>
-            <% if (user.email===post.user.email) { %>
-              <div class="flex gap-3 mt-6">
-                <a href="/update/<%= post._id %>" class="text-zinc-200">Edit User</a>
-                <a href="/delete/<%= post._id %>" class="text-red-500">Delete User</a>
-              </div>
-              <% } %>
-
+            <div class="flex gap-3 mt-6">
+              <a href="/update/<%= post._id %>" class="text-zinc-200">Edit User</a>
+              <a href="/delete/<%= post._id %>" class="text-red-500">Delete User</a>
+            </div>
           </div>
           <% })%>
             <% } else{ %>
-              <h1 class="text-3xl">No User</h1>
+              <h1 class="text-3xl h-[37vh] mt-80 text-zinc-500 self-center">No Posts Yet.</h1>
               <% }%>
+      </div>
 
-
-    </div>
   </div>
 </body>
 

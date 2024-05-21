@@ -18,7 +18,11 @@ let userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref:'post'
         }
-    ]
+    ],
+    pfp:{
+        type:String,
+        default:"default.png"
+    }
 });
 // making model and Exporting it
 module.exports = mongoose.model("user",userSchema);
