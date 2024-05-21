@@ -105,7 +105,7 @@ router.post('/create',isLoggedIn, async function (req, res) {
     image,
     user: req.user._id
   });
-  await user.posts.push(post._id);
+  user.posts.push(post._id);
   await user.save();
   res.redirect('/read');
 });
