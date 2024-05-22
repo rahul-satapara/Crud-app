@@ -13,7 +13,8 @@ let postSchema = new mongoose.Schema({
     },
     image:{
         type:String,
-        require:true
+        require:true,
+        default:"default.jpg"
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,

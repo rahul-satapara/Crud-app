@@ -43,7 +43,7 @@
             <h1 class="text-blue-500 mb-4">@<%= post.user.name %>
             </h1>
             <div class="w-full h-72 rounded-lg bg-zinc-700">
-              <img class="w-full h-full object-top" src="<%= post.image %>" style="object-fit: cover;" alt="User Image">
+              <img class="w-full h-full object-top" src="/images/upload/<%= post.image %>" style="object-fit: cover;" alt="User Image">
             </div>
             <h3 class="text-xl tracking-tighter mt-3  ">
               <%= post.name%>
@@ -53,8 +53,8 @@
             </h5>
             <% if (user.email===post.user.email) { %>
               <div class="flex gap-3 mt-6">
-                <a href="/update/<%= post._id %>" class="text-zinc-200">Edit User</a>
-                <a href="/delete/<%= post._id %>" class="text-red-500">Delete User</a>
+                <a href="/update/<%= post._id %>" class="text-yellow-100">Edit Post</a>
+                <a href="/delete/<%= post._id %>" class="text-red-500">Delete Post</a>
               </div>
               <% } %>
 

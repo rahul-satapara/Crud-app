@@ -34,15 +34,15 @@
     <div class="user cursor-pointer w-72 p-4 mt-11 bg-zinc-800 rounded-lg ">
       <h1 class="text-blue-500 mb-4">@<%= post.user.name %></h1>
         <div class="w-full h-72 rounded-lg bg-zinc-700">
-          <img class="w-full h-full object-top" src="<%= post.image %>" style="object-fit: cover;" alt="User Image">
+          <img class="w-full h-full object-top" src="/images/upload/<%= post.image %>" style="object-fit: cover;" alt="User Image">
         </div>
         <h3 class="text-xl tracking-tighter mt-3  "><%= post.name%></h3>
         <h5 class="text-zinc-500 "><%= post.email%></h5>
     </div>   
-    <form action="/update/<%= post._id%>" method="post" class=" w-8/12 mt-8">
+    <form action="/update/<%= post._id%>" method="post" class=" w-8/12 mt-8" enctype="multipart/form-data">
         <input class="block px-5 w-full rounded-md outline-none py-2 bg-zinc-800" type="text" value="<%= post.name %>" name="name" placeholder="Enter Name">
         <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" value="<%= post.email %>" type="email" name="email" placeholder="Enter your email">
-        <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" value="<%= post.image%>" type="text" name="image" placeholder="Enter Image Url">
+        <input type="file" name="img" id="postImg">
         <input  class="mt-4 bg-yellow-500 text-black px-5 py-2 rounded-md" type="submit" value="Update User">
     </form>
   </div>

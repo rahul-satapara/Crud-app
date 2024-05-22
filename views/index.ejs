@@ -27,14 +27,12 @@
   </div>
   <div class="bg-zinc-900 h-screen text-white p-20">
     <h1 class="text-3xl">Create User</h1>
-    <form action="/create" method="post" class="mt-8">
+    <form action="/create" method="post" class="mt-8" enctype="multipart/form-data">
       <input class="block px-5 w-full rounded-md outline-none py-2 bg-zinc-800" type="text" name="name"
         placeholder="Enter Name">
       <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" type="email"
         name="email" placeholder="Enter your email">
-      <input class="block mt-2 w-full rounded-md outline-none px-5 py-2 resize-none bg-zinc-800" type="text"
-        name="image" placeholder="Enter Image Url">
-
+      <input type="file" name="img" id="">
       <input class="mt-4 bg-blue-600 px-5 py-2 rounded-md" type="submit" value="Create User">
     </form>
 
