@@ -21,7 +21,7 @@ let userSchema = new mongoose.Schema({
     ],
     pfp:{
         type:String,
-        default:"default.png"
+        default:"default.jpg"
     }
 });
 // making model and Exporting it
