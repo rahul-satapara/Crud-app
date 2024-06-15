@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require("fs");
 var multer = require('multer');
-var upload = require('../utils/multerConfigue')
+var upload = require('../utils/multerConfigue');
 router.get('/profile',isLoggedIn,async(req,res)=>{
   let user = await userModel.findOne({email:req.user.email}).populate('posts');
   res.render('profile' ,{user});

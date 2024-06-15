@@ -39,15 +39,15 @@
       <a class="text-zinc-400" href="/edit/<%= user._id %>">Edit User</a>
     </div>
 
+    <h1 class="text-3xl my-3 self-center">Your Posts</h1>
     <% if(user.posts.length>0){%>
-      <h1 class="text-3xl my-3 self-center">Your Posts</h1>
       <div class="Users mt-2 flex gap-4 flex-wrap justify-center align-start">
         <% user.posts.forEach( function(post){%>
           <div class="user cursor-pointer w-72 p-4 mt-4 bg-zinc-800 rounded-lg ">
             <h1 class="text-blue-500 mb-4">@<%= user.name %>
             </h1>
             <div class="w-full h-72 rounded-lg bg-zinc-700">
-              <img class="w-full h-full object-top" src="<%= post.image %>" style="object-fit: cover;" alt="User Image">
+              <img class="w-full h-full object-top" src="/images/upload/<%= post.image %>" style="object-fit: cover;" alt="User Image">
             </div>
             <h3 class="text-xl tracking-tighter mt-3  ">
               <%= post.name%>
@@ -60,12 +60,11 @@
               <a href="/delete/<%= post._id %>" class="text-red-500">Delete User</a>
             </div>
           </div>
-          <% })%>
-            <% } else{ %>
+        <% })%>
+    <% } else{ %>
               <h1 class="text-3xl h-[37vh] mt-80 text-zinc-500 self-center">No Posts Yet.</h1>
-              <% }%>
+    <% }%>
       </div>
-
   </div>
 </body>
 
