@@ -99,7 +99,6 @@ router.post('/edit/:id', isLoggedIn, upload.single('img'), async (req, res) => {
   }
 });
 
-
 router.get('/logout', (req, res) => {
   res.cookie('token', "");
   res.redirect('/');

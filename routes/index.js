@@ -3,6 +3,8 @@ var router = express.Router();
 var postModel = require('../models/post');
 var userModel = require('../models/user');
 var jwt = require('jsonwebtoken');
+const path = require('path');
+const fs = require("fs");
 var multer = require('multer');
 var upload = require('../utils/multerConfigue')
 router.get('/profile',isLoggedIn,async(req,res)=>{
@@ -25,7 +27,7 @@ router.post('/create',isLoggedIn, upload.single('img'),async function (req, res)
   });
   user.posts.push(post._id);
   await user.save();
-  res.redirect('/read');
+  return res.redirect('/read');
 });
 
 // read
@@ -50,6 +52,15 @@ router.post('/update/:id', isLoggedIn, upload.single("img") ,async function (req
 // delete
 router.get('/delete/:id', isLoggedIn,async function (req, res) {
   let deletedPost= await postModel.findOneAndDelete({ _id: req.params.id });
+  // console.log(deletedPost);
+  // to delete multer files - uploded by users
+  let filePath = path.join(__dirname, `../public/images/upload/${deletedPost.image}`);
+  fs.unlink(filePath , (err)=>{
+    if(err){
+        console.log(err);
+        return
+    }
+  });
   let user = await userModel.findOne({email:req.user.email});
   await user.posts.splice(1,user.posts.indexOf(deletedPost._id));
   await user.save();
