@@ -44,7 +44,16 @@ router.get('/update/:id', isLoggedIn,async function (req, res) {
 
 router.post('/update/:id', isLoggedIn, upload.single("img") ,async function (req, res) {
   let { name, email} = req.body;
-  let updatedPost = await postModel.findOneAndUpdate({ _id: req.params.id }, { name, email, image:req.file.filename }, { new: true });
+  let post = await postModel.findOne({_id:req.params.id});  
+  let filePath = path.join(__dirname, `../public/images/upload/${post.image}`);
+  fs.unlink(filePath , (err)=>{
+    if(err){
+        console.log(err);
+        return
+    }
+  });
+
+  let updatedPost = await postModel.findOneAndUpdate({ _id: req.params.id }, { name, email, image:req.file.filename }, { new: true });  
   await updatedPost.save();
   res.redirect('/read');
 });
