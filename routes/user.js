@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+let path = require("path");
+let fs = require("fs");
 var userModel = require('../models/user');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
@@ -90,6 +92,16 @@ router.get('/edit/:id', signupValidationSchema, isLoggedIn, async (req, res) => 
 router.post('/edit/:id', isLoggedIn, upload.single('img'), async (req, res) => {
   try {
     let {name} = req.body;
+
+    let currentUser = await userModel.findOne({_id:req.user.id});  
+    let filePath = path.join(__dirname, `../public/images/upload/${currentUser.pfp}`);
+    fs.unlink(filePath , (err)=>{
+      if(err){
+          console.log(err);
+          return
+      }
+    });
+
     let updatedUser = await userModel.findOneAndUpdate({ _id: req.user._id},{name,pfp:req.file.filename}, { new: true });
     await updatedUser.save();
     res.redirect('/read');
